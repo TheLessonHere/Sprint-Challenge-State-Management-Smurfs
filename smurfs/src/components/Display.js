@@ -5,14 +5,13 @@ import Loader from 'react-loader-spinner';
 import { fetchData } from '../actions';
 
 const Display = (props) => {
-    const getData = e => {
-        e.preventDefault();
+    const getData = () => {
         props.fetchData();
     };
 
     useEffect(() => {
         getData();
-    }, [ props.smurfs ])
+    }, [])
 
     if (props.isFetching) {
         return (
@@ -34,7 +33,7 @@ const Display = (props) => {
         <div className="smurfs-container">
         {props.smurfs.length > 1 ? props.smurfs.map(smurf => {
             return (
-            <div className='smurf'>
+            <div className='smurf' key={smurf.id}>
             <h2>{smurf.name}</h2>
             <p>Age: {smurf.age}</p>
             <p>Height: {smurf.height}</p>
